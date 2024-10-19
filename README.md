@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Task Management App
 
-## Getting Started
+## Description
 
-First, run the development server:
+The Task Management App is a simple and responsive web application designed to help users manage their tasks effectively. Users can add, edit, delete, and mark tasks as completed. Each task can be assigned a priority level (high, medium, or low) which is visually represented using color coding.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Features
+- **Add New Tasks**: Users can create tasks with a title, description, and priority level.
+- **Edit Tasks**: Existing tasks can be modified to update their details.
+- **Mark Tasks as Completed**: Toggle the completion status of tasks.
+- **Delete Tasks**: Remove tasks from the list with a confirmation prompt.
+- **Sort Tasks by Priority**: Tasks are sorted dynamically, with high-priority tasks displayed at the top.
+- **Search Functionality**: Users can filter tasks by title or description.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technology Stack
+- **Frontend**: React.js
+- **UI Library**: Ant Design
+- **State Management**: React hooks for local state management
+- **Data Storage**: Local Storage for persistent task management
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Setup Instructions
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To set up and run the Task Management App locally, follow these steps:
 
-## Learn More
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yogesh8633/task-management-app.git
+   cd task-management-app
+   ```
+2. **Install Dependencies**:
+    ```bash
+    npm install
+    ```
+3. **Start the Development Server**:
+    ```bash
+    npm run dev
+    ```
+    Open your browser and navigate to http://localhost:3000 to view the application.
+    
 
-To learn more about Next.js, take a look at the following resources:
+## Sorting Tasks by Priority
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tasks are sorted dynamically based on their priority using a simple data structure. The sorting mechanism is implemented in the `sortTasksByPriority` function found in the `utils/taskUtils.js` file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Sorting Logic
+- A mapping of priority levels to numeric values is created, with `high` mapped to 1, `medium` to 2, and `low` to 3. This allows us to easily compare tasks and sort them accordingly.
+- The `sort` function is used to arrange the tasks based on these numeric values, ensuring that high-priority tasks appear at the top of the list.
 
-## Deploy on Vercel
+### Example Sorting Function
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Here’s a brief overview of the sorting function:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```javascript
+export const sortTasksByPriority = (tasks) => {
+  const priorityOrder = { high: 1, medium: 2, low: 3 };
+  return tasks.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+};
