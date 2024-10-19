@@ -58,8 +58,8 @@ const TaskBoard = ({ initialTasks, setTasks }) => {
 
   const getSortedTasks = () => {
     let sortedTasks = [...filteredTasks];
-    if (sortOption === "completed") {
-      sortedTasks.sort((a, b) => a.completed - b.completed);
+    if (sortOption === "name") {
+      sortedTasks.sort((a, b) => a.title.localeCompare(b.title));
     } else {
       sortedTasks = sortTasksByPriority(sortedTasks);
     }
@@ -145,9 +145,10 @@ const TaskBoard = ({ initialTasks, setTasks }) => {
         <Col>
           <Select
             defaultValue="priority"
-            className="w-52"
+            className="w-52 mt-2 md:mt-0"
             onChange={(value) => setSortOption(value)}>
             <Option value="priority">Sort by Priority</Option>
+            <Option value="name">Sort by Name</Option>
           </Select>
         </Col>
       </Row>

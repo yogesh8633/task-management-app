@@ -30,25 +30,37 @@ const TaskForm = ({ addTask, updateTask, editingTask, setEditingTask }) => {
   return (
     <Form
       form={form}
-      layout="inline"
+      layout="vertical"
       onFinish={onFinish}
-      style={{ marginTop: '20px' }}
+      className="mt-5 grid grid-cols-1 gap-1 md:grid-cols-4"
     >
-      <Form.Item name="title" rules={[{ required: true, message: 'Title is required!' }]}>
-        <Input placeholder="Task Title" />
+      <Form.Item
+        name="title"
+        rules={[{ required: true, message: 'Title is required!' }]}
+        className="md:col-span-1 w-full"
+      >
+        <Input placeholder="Task Title" className="w-full" />
       </Form.Item>
-      <Form.Item name="description" rules={[{ required: true, message: 'Description is required!' }]}>
-        <Input placeholder="Task Description" />
+      <Form.Item
+        name="description"
+        rules={[{ required: true, message: 'Description is required!' }]}
+        className="md:col-span-1 w-full"
+      >
+        <Input placeholder="Task Description" className="w-full" />
       </Form.Item>
-      <Form.Item name="priority" rules={[{ required: true, message: 'Priority is required!' }]}>
-        <Select placeholder="Select Priority">
+      <Form.Item
+        name="priority"
+        rules={[{ required: true, message: 'Priority is required!' }]}
+        className="md:col-span-1 w-full"
+      >
+        <Select placeholder="Select Priority" className="w-full">
           <Option value="high">High</Option>
           <Option value="medium">Medium</Option>
           <Option value="low">Low</Option>
         </Select>
       </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
+      <Form.Item className="md:col-span-1 w-full">
+        <Button type="primary" htmlType="submit" className="w-full md:w-auto">
           {editingTask ? 'Update Task' : 'Add Task'}
         </Button>
       </Form.Item>
